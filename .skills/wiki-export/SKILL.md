@@ -51,7 +51,7 @@ For each page, Grep the body for `\[\[.*?\]\]` to extract all wikilinks:
 - If the linking sentence ends with `^[inferred]` or `^[ambiguous]`, override `confidence` accordingly
 
 **Typed edge enrichment:** After building the wikilink edge list, read each page's `relationships:` frontmatter block. For each `{target, type}` entry:
-- Resolve the target wikilink to a node id (same normalization as above)
+- The `target` YAML value is a quoted wikilink string such as `"[[concepts/lstm]]"`. Strip the surrounding `[[` and `]]` characters, then apply the same normalization (lowercase, spaces→hyphens, strip `.md`) to get the node id.
 - Skip entries whose resolved target is not in the node list (broken link)
 - If an edge for this `(source, target)` pair already exists, override its `relation` field with the typed value (e.g., `"contradicts"`) and set `typed: true`
 - If no edge exists yet for this pair, add one: `{source: page_id, target: target_id, relation: <type>, confidence: "EXTRACTED", typed: true}`

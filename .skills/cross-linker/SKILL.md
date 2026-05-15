@@ -156,7 +156,7 @@ relationships:
     type: uses
 ```
 
-Use the same link format (`wikilink` or `markdown`) determined by `OBSIDIAN_LINK_FORMAT`.
+Always use wikilink format (`[[path/to/page]]`) for `target` values in the `relationships:` YAML block — regardless of `OBSIDIAN_LINK_FORMAT`. The `OBSIDIAN_LINK_FORMAT` setting controls body content; frontmatter properties always use wikilink syntax so that `wiki-export` can reliably parse them.
 
 Only add entries for links added in this cross-linker run — do not touch typed entries that were already present.
 
